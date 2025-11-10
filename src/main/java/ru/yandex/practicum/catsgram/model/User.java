@@ -14,7 +14,7 @@ import java.time.Instant;
 @EqualsAndHashCode(of = { "email" })
 @RequiredArgsConstructor
 public class User {
-    private long id;
+    private Long id;
     private String username;
     private String email;
     private String password;
