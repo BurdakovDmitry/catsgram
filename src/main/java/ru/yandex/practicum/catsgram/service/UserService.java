@@ -46,19 +46,18 @@ public class UserService {
 
         if (users.containsKey(user.getId())) {
             User oldUser = users.get(user.getId());
-            if (oldUser.getEmail().equals(user.getEmail())) {
-                throw new DuplicatedDataException("Этот имейл уже используется");
-            }
-
-            if (user.getEmail() != null) {
+            if (user.getEmail() != null && !user.getEmail().isBlank()) {
+                if (oldUser.getEmail().equals(user.getEmail())) {
+                    throw new DuplicatedDataException("Этот имейл уже используется");
+                }
                 oldUser.setEmail(user.getEmail());
             }
 
-            if (user.getUsername() != null) {
+            if (user.getUsername() != null && !user.getUsername().isBlank()) {
                 oldUser.setUsername(user.getUsername());
             }
 
-            if (user.getPassword() != null) {
+            if (user.getPassword() != null && !user.getPassword().isBlank()) {
                 oldUser.setPassword(user.getPassword());
             }
             return oldUser;
@@ -76,12 +75,7 @@ public class UserService {
         return ++currentMaxId;
     }
 
-    protected Optional<User> findUserById(long id) {
-        for (Long userId : users.keySet()) {
-            if (userId == id) {
-                return Optional.of(users.get(id));
-            }
-        }
-        return Optional.empty();
+    public Optional<User> findUserById(long authorId) {
+        return Optional.ofNullable(users.get(authorId));
     }
 }
