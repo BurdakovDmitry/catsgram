@@ -1,16 +1,8 @@
 package ru.yandex.practicum.catsgram.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Setter
-@Getter
-@ToString
-@EqualsAndHashCode(of = { "id" })
-@RequiredArgsConstructor
+@Data
 public class Image {
     private Long id;
     private long postId;
