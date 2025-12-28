@@ -35,8 +35,9 @@ public class PostService {
     }
 
     public Post create(Post post) {
-        userService.findUserById(post.getAuthorId()).orElseThrow(() ->
-                new ConditionsNotMetException(String.format("«Автор с id = %d не найден»", post.getAuthorId())));
+        if (userService.getUserById(post.getAuthorId()) == null) {
+            throw new ConditionsNotMetException(String.format("«Автор с id = %d не найден»", post.getAuthorId()));
+        }
 
         if (post.getDescription() == null || post.getDescription().isBlank()) {
             throw new ConditionsNotMetException("Описание не может быть пустым");

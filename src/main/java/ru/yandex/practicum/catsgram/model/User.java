@@ -1,18 +1,12 @@
 package ru.yandex.practicum.catsgram.model;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.time.Instant;
 
-@Setter
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(of = { "email" })
-@RequiredArgsConstructor
 public class User {
     private Long id;
     private String username;
